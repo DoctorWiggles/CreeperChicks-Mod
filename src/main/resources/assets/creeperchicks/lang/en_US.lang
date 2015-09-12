@@ -1,0 +1,16 @@
+﻿#English
+
+
+
+#          #
+# Entities #
+entity.Creeper Chick.name=Creeper Chick
+entity.Entity_creep_Egg.name=Thrown Creeper Chick Egg
+
+
+#Items #
+item.egg_item.name=Creeper Chick Egg
+item.creeper_treat.name=Creeper Treat
+
+
+itemGroup.creeperchicks=Creeper Chicks
