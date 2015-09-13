@@ -15,7 +15,7 @@ public class CreepTab extends CreativeTabs
 	
 	public CreepTab()
 	{
-		//super(EnumChatFormatting.BLUE +"" + EnumChatFormatting.ITALIC + "Helper Tools");
+		
 		super("creeperchicks");
 		
 		 this.setBackgroundImageName("items.png");

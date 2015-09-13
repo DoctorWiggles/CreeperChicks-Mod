@@ -20,7 +20,8 @@ public class RecipeFactory extends Item_Registry{
 		ShapelessRecipe(new ItemStack(Items.gunpowder, 1 , 0), new Object[]{
 			egg_item});
 		
-		GameRegistry.addSmelting(egg_item, new ItemStack(Items.blaze_powder), 0f);
+		if(BlazePowderSmelting){
+			GameRegistry.addSmelting(egg_item, new ItemStack(Items.blaze_powder), 0f);}
 	
 		
 		ShapelessRecipe(new ItemStack(creeper_treat, 2, 0), new Object[]{

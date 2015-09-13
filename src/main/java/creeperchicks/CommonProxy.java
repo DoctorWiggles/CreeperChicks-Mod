@@ -12,6 +12,7 @@ import creeperchicks.registry.RecipeFactory;
 public class CommonProxy {
 	
 public void preInit(FMLPreInitializationEvent e) {	
+		Configs.ProcessConfiguration(e);  
 		Item_Registry.createItems();
 		GameRegistry.registerFuelHandler(new Fuel_Handler());
 

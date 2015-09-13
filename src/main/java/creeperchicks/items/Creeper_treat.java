@@ -63,6 +63,8 @@ public class Creeper_treat extends ItemFood
             return false;
         }
         if(entity instanceof EntityChicken){
+        	ItemStack heldItem = player.inventory.getCurrentItem();
+			 heldItem.stackSize--;
     		 world.createExplosion(entity, x,y,z, (float)3, true);
     		 entity.setDead();
     		 String name = null;
@@ -78,8 +80,7 @@ public class Creeper_treat extends ItemFood
 					chicky.setCustomNameTag(name);
 					//chicky.setAlwaysRenderNameTag(true);
 				 }
-				 ItemStack heldItem = player.inventory.getCurrentItem();
-				 heldItem.stackSize--;
+				 
     	}       
         
         return false;

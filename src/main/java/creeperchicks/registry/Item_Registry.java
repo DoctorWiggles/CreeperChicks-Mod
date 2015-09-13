@@ -2,11 +2,12 @@ package creeperchicks.registry;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
+import creeperchicks.Configs;
 import creeperchicks.Main;
 import creeperchicks.items.Creeper_treat;
 import creeperchicks.items.Egg_item;
 
-public class Item_Registry {
+public class Item_Registry extends Configs{
 	
 	public static Item egg_item;
 	public static Item creeper_treat;	

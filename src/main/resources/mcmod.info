@@ -1,15 +1,15 @@
 [
 {
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
+  "modid": "CreeperChicks",
+  "name": "CreeperChicks",
+  "description": "Bread and raise Creeper infused Chickens.",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "",
+  "url": "https://github.com/DoctorWiggles/CreeperChicks-Mod",
   "updateUrl": "",
-  "authorList": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
-  "logoFile": "",
+  "authorList": ["DoctorWiggles"],
+  "credits": "",
+  "logoFile": "Creeper_Logo.png",
   "screenshots": [],
   "dependencies": []
 }

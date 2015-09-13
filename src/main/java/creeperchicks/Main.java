@@ -48,7 +48,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 
-@Mod(modid="CreeperChicks", name="CreeperChicks", version="v1.0")
+@Mod(modid="CreeperChicks", name="CreeperChicks", version="v1.A")
 public class Main 
 {	
 
@@ -57,6 +57,7 @@ public class Main
 	public static Main instance; 
 	
 	public static final Logger logger = LogManager.getLogger("HelperToolsID");
+	public static Configuration config;
 
 	// Says where the client and server 'proxy' code is loaded.
 	@SidedProxy(clientSide="creeperchicks.ClientProxy", serverSide="creeperchicks.CommonProxy")
