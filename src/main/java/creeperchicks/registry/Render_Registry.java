@@ -17,10 +17,12 @@ import net.minecraft.item.Item;
 public final class Render_Registry {
 
 	public static void register_entity_renderer(){
-		 RenderingRegistry.registerEntityRenderingHandler((Creeper_Chicken.class), new Creeper_Chicken_Render(new Creeper_Chicken_Model(), 0.3F));   
+		 RenderingRegistry.registerEntityRenderingHandler((Creeper_Chicken.class),
+				 new Creeper_Chicken_Render(new Creeper_Chicken_Model(), 0.3F));   
         
 		 RenderingRegistry.registerEntityRenderingHandler(Thrown_creep_Egg.class, new Creep_Egg_Render(1));
-		
+		 
+		 
 	}
 
 	

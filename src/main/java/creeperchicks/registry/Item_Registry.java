@@ -10,7 +10,8 @@ import creeperchicks.items.Egg_item;
 public class Item_Registry extends Configs{
 	
 	public static Item egg_item;
-	public static Item creeper_treat;	
+	public static Item creeper_treat;
+	public static Item flail_item;
 	
 	public static void createItems() {
 		Main.logger.info("Registering items");

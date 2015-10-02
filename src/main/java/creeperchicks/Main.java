@@ -48,7 +48,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 
-@Mod(modid="CreeperChicks", name="CreeperChicks", version="v1.A")
+@Mod(modid="CreeperChicks", name="CreeperChicks", version="v1.B")
 public class Main 
 {	
 
