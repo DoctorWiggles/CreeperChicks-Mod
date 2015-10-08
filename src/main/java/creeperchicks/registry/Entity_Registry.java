@@ -12,8 +12,8 @@ public class Entity_Registry {
 	
 	
 	public static void register_entities(){
-	EntityRegistry.registerModEntity(Creeper_Chicken.class, "Creeper Chick", 1, Main.instance, 80, 3, true);    
-    EntityRegistry.registerGlobalEntityID(Creeper_Chicken.class, "Creeper Chick", 35, 0x14D21E, 0x58595C);
+	EntityRegistry.registerModEntity(Creeper_Chicken.class, "CreeperChick", 1, Main.instance, 80, 3, true);    
+    EntityRegistry.registerGlobalEntityID(Creeper_Chicken.class, "CreeperChick", 35, 0x14D21E, 0x58595C);
     /** Thanks for breaking and not documenting changes to spawn eggs lex **/
     /** They sure are useful having being forced disabled and all. **/
   
