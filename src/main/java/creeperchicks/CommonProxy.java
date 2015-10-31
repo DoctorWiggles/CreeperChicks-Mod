@@ -1,5 +1,7 @@
 package creeperchicks;
 
+import net.minecraftforge.common.MinecraftForge;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -15,6 +17,11 @@ public void preInit(FMLPreInitializationEvent e) {
 		Configs.ProcessConfiguration(e);  
 		Item_Registry.createItems();
 		GameRegistry.registerFuelHandler(new Fuel_Handler());
+		
+		if(Configs.CreeperCrushing){
+		FMLCommonHandler.instance().bus().register(Main.eventHandler);
+		MinecraftForge.EVENT_BUS.register(Main.eventHandler);
+		}
 
 	}
 

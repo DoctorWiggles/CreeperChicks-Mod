@@ -47,8 +47,9 @@ import cpw.mods.fml.common.registry.GameRegistry;
 //import cpw.mods.fml.common.network.NetworkMod; // not used in 1.7
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
+import creeperchicks.util.ForgeEventHandler;
 
-@Mod(modid="CreeperChicks", name="CreeperChicks", version="v1.C")
+@Mod(modid="CreeperChicks", name="CreeperChicks", version="v2.a")
 public class Main 
 {	
 
@@ -56,7 +57,8 @@ public class Main
 	@Instance(value = "CreeperChicks")
 	public static Main instance; 
 	
-	public static final Logger logger = LogManager.getLogger("HelperToolsID");
+	public static final Logger logger = LogManager.getLogger("CreeperChicks");
+	public static ForgeEventHandler eventHandler = new ForgeEventHandler();
 	public static Configuration config;
 
 	// Says where the client and server 'proxy' code is loaded.

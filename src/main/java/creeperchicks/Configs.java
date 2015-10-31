@@ -9,6 +9,8 @@ import net.minecraftforge.common.util.EnumHelper;
 public class Configs extends Main{
 	
 	public static boolean BlazePowderSmelting;
+	public static boolean CreeperCrushing;
+	public static boolean TransformationExplosion;
 	
 	//===============================================================================//
 	
@@ -35,9 +37,9 @@ public class Configs extends Main{
 		logger.info("Loading Configs");
 		
 		
-		BlazePowderSmelting = config.get(conf1, "BlazePowderSmelting", true, "Allows Creeper Chick Eggs to be smelted into Blaze Powder").getBoolean(true);
-		//RecipeDirtBomb = config.get(conf3, "RecipeDirtBomb", false).getBoolean(true);
-		
+		BlazePowderSmelting = config.get(conf1, "BlazePowderSmelting", false, "Allows Creeper Chick Eggs to be smelted into Blaze Powder").getBoolean(false);
+		CreeperCrushing = config.get(conf1, "CreeperCrushing", true, "Allows Creepers to be instantly crushed and give bonus loot including heads").getBoolean(true);
+		TransformationExplosion = config.get(conf1, "TransformationExplosion", true, "Allows or disables transformation creating explosions").getBoolean(true);
 		
 		
 

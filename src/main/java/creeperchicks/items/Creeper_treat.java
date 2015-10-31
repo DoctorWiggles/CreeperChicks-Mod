@@ -1,5 +1,6 @@
 package creeperchicks.items;
 
+import creeperchicks.Configs;
 import creeperchicks.CreepTab;
 import creeperchicks.mobs.Creeper_Chicken;
 import net.minecraft.creativetab.CreativeTabs;
@@ -65,7 +66,8 @@ public class Creeper_treat extends ItemFood
         if(entity instanceof EntityChicken){
         	ItemStack heldItem = player.inventory.getCurrentItem();
 			 heldItem.stackSize--;
-    		 world.createExplosion(entity, x,y,z, (float)3, true);
+    		 if(Configs.TransformationExplosion){
+    			 world.createExplosion(entity, x,y,z, (float)3, true);}
     		 entity.setDead();
     		 String name = null;
     		 try{
