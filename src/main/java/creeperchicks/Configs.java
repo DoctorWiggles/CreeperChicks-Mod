@@ -1,6 +1,6 @@
 package creeperchicks;
 
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;

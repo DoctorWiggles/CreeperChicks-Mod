@@ -3,7 +3,7 @@ package creeperchicks.registry;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.world.biome.BiomeGenBase;
-import cpw.mods.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 import creeperchicks.Main;
 import creeperchicks.mobs.Creeper_Chicken;
 import creeperchicks.projectiles.Thrown_creep_Egg;

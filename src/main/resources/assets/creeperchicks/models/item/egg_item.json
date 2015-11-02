@@ -1,0 +1,6 @@
+{
+    "parent":"creeperchicks:item/standard_item",
+    "textures": {
+        "layer0":"creeperchicks:items/egg_item"
+    }
+}

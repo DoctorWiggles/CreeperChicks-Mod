@@ -29,33 +29,39 @@ import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler; // used in 1.6.2
-//import cpw.mods.fml.common.Mod.PreInit;    // used in 1.5.2
-//import cpw.mods.fml.common.Mod.Init;       // used in 1.5.2
-//import cpw.mods.fml.common.Mod.PostInit;   // used in 1.5.2
-import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-import cpw.mods.fml.common.registry.EntityRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
-//import cpw.mods.fml.common.network.NetworkMod; // not used in 1.7
-import cpw.mods.fml.common.registry.LanguageRegistry;
-import cpw.mods.fml.relauncher.Side;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler; // used in 1.6.2
+//import net.minecraftforge.fml.common.Mod.PreInit;    // used in 1.5.2
+//import net.minecraftforge.fml.common.Mod.Init;       // used in 1.5.2
+//import net.minecraftforge.fml.common.Mod.PostInit;   // used in 1.5.2
+import net.minecraftforge.fml.common.Mod.Instance;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+//import net.minecraftforge.fml.common.network.NetworkMod; // not used in 1.7
+import net.minecraftforge.fml.common.registry.LanguageRegistry;
+import net.minecraftforge.fml.relauncher.Side;
 import creeperchicks.util.ForgeEventHandler;
 
-@Mod(modid="CreeperChicks", name="CreeperChicks", version="v2.a")
+
+@Mod(modid = Main.MODID, name = Main.MODNAME, version = Main.VERSION)
 public class Main 
 {	
 
 	// The instance of your mod that Forge uses.
 	@Instance(value = "CreeperChicks")
 	public static Main instance; 
+	
+	public static final String MODID = "CreeperChicks";
+	public static final String MODNAME = "CreeperChicks";
+	public static final String VERSION = "v2.a";
+	
 	
 	public static final Logger logger = LogManager.getLogger("CreeperChicks");
 	public static ForgeEventHandler eventHandler = new ForgeEventHandler();

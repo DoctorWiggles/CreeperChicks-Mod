@@ -28,7 +28,7 @@ public class Creeper_treat extends ItemFood
     public Creeper_treat(int healAmount, float saturationModifier, boolean wolvesFavorite)
     {	super(healAmount, saturationModifier, wolvesFavorite);
     this.setUnlocalizedName("creeper_treat");
-    setTextureName("Creeperchicks:creeper_treat");
+    //setTextureName("Creeperchicks:creeper_treat");
     setCreativeTab(CreepTab.creeperchicks);
     this.maxStackSize = 64;  
 
@@ -37,10 +37,19 @@ public class Creeper_treat extends ItemFood
     
     @Override
     protected void onFoodEaten(ItemStack stack, World world, EntityPlayer player) {
-    super.onFoodEaten(stack, world, player);
+
+   	 if (!world.isRemote)
+        {
+   		 world.createExplosion(player, player.posX, player.posY, player.posZ, (float)3, false);
+   		 world.createExplosion(null, player.posX, player.posY, player.posZ, (float).2, true);
+        }    	
+   	 //player.getFoodStats().func_151686_a(this, stack);
+           world.playSoundAtEntity(player, "random.burp", 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
+          // this.onFoodEaten(stack, world, player);
            return;
   
     }
+    
     
    
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
@@ -76,7 +85,7 @@ public class Creeper_treat extends ItemFood
     		 
     		 Creeper_Chicken chicky = new Creeper_Chicken(world);
     		 chicky.setLocationAndAngles(x,y,z, 0.0F, 0.0F);
-    		 chicky.onSpawnWithEgg((IEntityLivingData)null);
+    		 //chicky.onSpawnWithEgg((IEntityLivingData)null);
 				 world.spawnEntityInWorld(chicky);
 				 if(name != null){
 					chicky.setCustomNameTag(name);
@@ -88,24 +97,8 @@ public class Creeper_treat extends ItemFood
         return false;
     }
 
-    
-    public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player)
-    {
-    	 if (!world.isRemote)
-         {
-    		 world.createExplosion(player, player.posX, player.posY, player.posZ, (float)3, false);
-    		 world.createExplosion(null, player.posX, player.posY, player.posZ, (float).2, true);
-         }    	
-    	 player.getFoodStats().func_151686_a(this, stack);
-            world.playSoundAtEntity(player, "random.burp", 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
-            this.onFoodEaten(stack, world, player);
-            return stack;
-        
-    }
-    
-    
     public EnumAction getItemUseAction(ItemStack stack)
     {
-        return EnumAction.eat;
+        return EnumAction.EAT;
     }
 }

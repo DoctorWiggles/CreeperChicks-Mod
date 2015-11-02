@@ -4,6 +4,7 @@ import java.util.Stack;
 
 
 
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -18,6 +19,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -64,10 +66,9 @@ public class Thrown_creep_Egg extends EntityThrowable{
       
 	   
 	   if(!this.worldObj.isRemote){
-      Block theblock = worldObj.getBlock(mop.blockX, mop.blockY, mop.blockZ);
       
       
-      this.worldObj.createExplosion(null, this.posX, this.posY, this.posZ, (float)1, true);
+      this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, (float)1, true);
       this.setDead();
 	   }
    }

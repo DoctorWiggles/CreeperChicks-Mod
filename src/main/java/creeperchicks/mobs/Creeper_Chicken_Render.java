@@ -1,9 +1,10 @@
 package creeperchicks.mobs;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -18,9 +19,9 @@ public class Creeper_Chicken_Render extends RenderLiving
     private static final String __OBFID = "CL_00000983";
     
 
-    public Creeper_Chicken_Render(ModelBase p_i1252_1_, float p_i1252_2_)
+    public Creeper_Chicken_Render(RenderManager render, ModelBase base, float f1)
     {
-        super(p_i1252_1_, p_i1252_2_);
+        super(render, base, f1);
     }
 
     /**

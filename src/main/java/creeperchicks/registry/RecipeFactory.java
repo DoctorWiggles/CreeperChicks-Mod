@@ -3,7 +3,7 @@ package creeperchicks.registry;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
-import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import creeperchicks.Main;
 
 public class RecipeFactory extends Item_Registry{

@@ -18,7 +18,7 @@ public class Egg_item extends Item
         this.maxStackSize = 16;
         this.setCreativeTab(CreepTab.creeperchicks);
         this.setUnlocalizedName("egg_item");
-        setTextureName("creeperchicks:egg_item");
+        //setTextureName("creeperchicks:egg_item");
     }
 
     /**
