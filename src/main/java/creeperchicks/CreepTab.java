@@ -22,9 +22,11 @@ public class CreepTab extends CreativeTabs
 	{
 		return new ItemStack(Item_Registry.creeper_treat);
 	}
+
 	@Override
-	public Item getTabIconItem() 
-	{
-		return Item_Registry.creeper_treat;
+	public ItemStack getTabIconItem() {
+		
+		return new ItemStack(Item_Registry.creeper_treat);
 	}
+	
 }

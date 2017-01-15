@@ -45,34 +45,34 @@ public class Creeper_treat extends ItemFood
     @Override
     public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer player, EntityLivingBase target, EnumHand hand)
     {
-    	World world = player.worldObj;
+    	World world = player.world;
     	double x = target.posX;
     	double y = target.posY;
     	double z = target.posZ;
-        if (target.worldObj.isRemote)
-        {
-            return false;
-        }
-        if(target instanceof EntityChicken){
-        	ItemStack heldItem = player.inventory.getCurrentItem();
-			 heldItem.stackSize--;
-    		 if(Config.TransformationExplosion){
-    			 world.createExplosion(target, x,y,z, (float)3, true);}
-    		 target.setDead();
-    		 String name = null;
-    		 try{
-    			 name = ((EntityChicken) target).getCustomNameTag();}
-    		 	catch(Exception exception){}   
-    		 
-    		 Creeper_Chicken chicky = new Creeper_Chicken(world);
-    		 chicky.setLocationAndAngles(x,y,z, 0.0F, 0.0F);
-				 world.spawnEntityInWorld(chicky);
-				 if(name != null){
-					chicky.setCustomNameTag(name);
-				 }				 
+    	if (target.world.isRemote)
+    	{
+    		return false;
+    	}
+    	if(target instanceof EntityChicken){
+    		ItemStack heldItem = player.inventory.getCurrentItem();
+    		stack.shrink(1);
+    		if(Config.TransformationExplosion){
+    			world.createExplosion(target, x,y,z, (float)3, true);}
+    		target.setDead();
+    		String name = null;
+    		try{
+    			name = ((EntityChicken) target).getCustomNameTag();}
+    		catch(Exception exception){}   
+
+    		Creeper_Chicken chicky = new Creeper_Chicken(world);
+    		chicky.setLocationAndAngles(x,y,z, 0.0F, 0.0F);
+    		world.spawnEntity(chicky);
+    		if(name != null){
+    			chicky.setCustomNameTag(name);
+    		}				 
     	} 
-        
-        return false;
+
+    	return false;
     }
 
         
@@ -84,7 +84,7 @@ public class Creeper_treat extends ItemFood
    		 world.createExplosion(living, living.posX, living.posY, living.posZ, (float)3, false);
    		 world.createExplosion(living, living.posX, living.posY, living.posZ, (float).2, true);
         } 
-        --stack.stackSize;
+    	stack.shrink(1);
         
         if (living instanceof EntityPlayer)
         {
@@ -94,7 +94,7 @@ public class Creeper_treat extends ItemFood
             this.onFoodEaten(stack, world, player);
             player.addStat(StatList.getObjectUseStats(this));
             
-            if(player.capabilities.isCreativeMode){++stack.stackSize;}
+            if(player.capabilities.isCreativeMode){stack.grow(1);}
     	
         }
 

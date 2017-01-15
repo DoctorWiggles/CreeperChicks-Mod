@@ -29,14 +29,14 @@ public class ForgeEventHandler {
 		if (event.isCanceled() || !(event.getEntityLiving() instanceof EntityCreeper)) { 
 		      return;
 		    }
-		if(event.getSource() == DamageSource.fallingBlock || event.getSource() == DamageSource.inWall
-				||event.getSource() == DamageSource.anvil){			
+		if(event.getSource() == DamageSource.FALLING_BLOCK || event.getSource() == DamageSource.IN_WALL
+				||event.getSource() == DamageSource.ANVIL){			
 		//precall business
 		EntityLivingBase ent = event.getEntityLiving();
 		double X = ent.posX;
 		double Y = ent.posY;
 		double Z  = ent.posZ;
-		World world = ent.worldObj;
+		World world = ent.world;
 		ItemStack powder = new ItemStack(Items.GUNPOWDER, 1);
 		ItemStack skull = new ItemStack(Items.SKULL, 1, 4);
 		int randy = growrand.nextInt(4);
@@ -58,7 +58,7 @@ public class ForgeEventHandler {
            world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, X+f-.5, Y+f1, Z+f2+.5, p, p1, p2);
            
        }		
-		ent.attackEntityFrom(DamageSource.fall, 100);		
+		ent.attackEntityFrom(DamageSource.FALL, 100);		
 		
 		//Drop random loot
 				for(int go = 0; go<randy; ++go){

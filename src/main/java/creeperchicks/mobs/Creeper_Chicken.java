@@ -19,6 +19,7 @@ import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -93,7 +94,7 @@ public class Creeper_Chicken extends EntityAnimal
         this.oFlap = this.wingRotation;
         this.oFlapSpeed = this.destPos;
         this.destPos = (float)((double)this.destPos + (double)(this.onGround ? -1 : 4) * 0.3D);
-        this.destPos = MathHelper.clamp_float(this.destPos, 0.0F, 1.0F);
+        this.destPos = MathHelper.clamp(this.destPos, 0.0F, 1.0F);
 
         if (!this.onGround && this.wingRotDelta < 1.0F)
         {
@@ -109,7 +110,7 @@ public class Creeper_Chicken extends EntityAnimal
 
         this.wingRotation += this.wingRotDelta * 2.0F;
 
-        if (!this.worldObj.isRemote && !this.isChild() && !this.isChickenJockey() && --this.timeUntilNextEgg <= 0)
+        if (!this.world.isRemote && !this.isChild() && !this.isChickenJockey() && --this.timeUntilNextEgg <= 0)
         {
             this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
             this.dropItem(Item_Registry.egg_item, 1);
@@ -149,7 +150,7 @@ public class Creeper_Chicken extends EntityAnimal
 
     public Creeper_Chicken createChild(EntityAgeable ageable)
     {
-        return new Creeper_Chicken(this.worldObj);
+        return new Creeper_Chicken(this.world);
     }
 
     /**
@@ -169,11 +170,7 @@ public class Creeper_Chicken extends EntityAnimal
         return this.isChickenJockey() ? 10 : super.getExperiencePoints(player);
     }
 
-    public static void func_189789_b(DataFixer p_189789_0_)
-    {
-        EntityLiving.func_189752_a(p_189789_0_, "Chicken");
-    }
-
+   
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */

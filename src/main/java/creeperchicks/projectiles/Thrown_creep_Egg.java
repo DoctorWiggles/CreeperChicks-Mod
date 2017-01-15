@@ -44,9 +44,9 @@ public class Thrown_creep_Egg extends EntityThrowable{
    protected void onImpact(RayTraceResult mop) {
       
 	   
-	   if(!this.worldObj.isRemote){      
+	   if(!this.world.isRemote){      
       
-      this.worldObj.createExplosion(null, this.posX, this.posY, this.posZ, (float)1, true);
+      this.world.createExplosion(null, this.posX, this.posY, this.posZ, (float)1, true);
       this.setDead();
 	   }
    }
