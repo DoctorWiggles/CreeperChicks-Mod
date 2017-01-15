@@ -1,13 +1,13 @@
 package creeperchicks.registry;
 
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
-import creeperchicks.Configs;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import creeperchicks.Main;
+import creeperchicks.config.Config;
 import creeperchicks.items.Creeper_treat;
 import creeperchicks.items.Egg_item;
 
-public class Item_Registry extends Configs{
+public class Item_Registry extends Config{
 	
 	public static Item egg_item;
 	public static Item creeper_treat;
@@ -15,15 +15,17 @@ public class Item_Registry extends Configs{
 	
 	public static void createItems() {
 		Main.logger.info("Registering items");
-		egg_item = new Egg_item();     
-		GameRegistry.registerItem(egg_item, "egg_item");  
 		
-		creeper_treat = new Creeper_treat( 12, 6f, true);
-		GameRegistry.registerItem(creeper_treat, "creeper_treat");
-		
-		
+		reg(egg_item = new Egg_item("egg_item"));				
+		reg(creeper_treat = new Creeper_treat("creeper_treat", 12, 6f, true));
 		
 	
+	}
+	
+	public static void reg(Item item){
+		
+		item.setRegistryName(item.getUnlocalizedName().substring(5));
+		GameRegistry.register(item);
 	}
 
 }

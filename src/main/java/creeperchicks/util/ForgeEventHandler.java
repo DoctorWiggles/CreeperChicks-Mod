@@ -2,15 +2,21 @@ package creeperchicks.util;
 
 import java.util.Random;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityCreeper;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class ForgeEventHandler {
   
@@ -20,19 +26,19 @@ public class ForgeEventHandler {
 	@SubscribeEvent
 	public void CrushedLoot_Handler(LivingHurtEvent event){
 				
-		if (event.isCanceled() || !(event.entityLiving instanceof EntityCreeper)) { 
+		if (event.isCanceled() || !(event.getEntityLiving() instanceof EntityCreeper)) { 
 		      return;
 		    }
-		if(event.source == DamageSource.fallingBlock || event.source == DamageSource.inWall
-				||event.source == DamageSource.anvil){			
+		if(event.getSource() == DamageSource.fallingBlock || event.getSource() == DamageSource.inWall
+				||event.getSource() == DamageSource.anvil){			
 		//precall business
-		EntityLivingBase ent = event.entityLiving;
+		EntityLivingBase ent = event.getEntityLiving();
 		double X = ent.posX;
 		double Y = ent.posY;
 		double Z  = ent.posZ;
 		World world = ent.worldObj;
-		ItemStack powder = new ItemStack(Items.gunpowder, 1);
-		ItemStack skull = new ItemStack(Items.skull, 1, 4);
+		ItemStack powder = new ItemStack(Items.GUNPOWDER, 1);
+		ItemStack skull = new ItemStack(Items.SKULL, 1, 4);
 		int randy = growrand.nextInt(4);
 		int roll = randy + 2;
 		
@@ -49,19 +55,17 @@ public class ForgeEventHandler {
            float p = (this.growrand .nextFloat()-.5F )/5 ;
            float p2 = (this.growrand .nextFloat()-.5F )/5 ;
            
-           world.spawnParticle("largesmoke", X+f-.5, Y+f1, Z+f2+.5, p, p1, p2);
+           world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, X+f-.5, Y+f1, Z+f2+.5, p, p1, p2);
            
        }		
-		ent.attackEntityFrom(DamageSource.fall, 100);
-		//ent.setDead();
+		ent.attackEntityFrom(DamageSource.fall, 100);		
 		
 		//Drop random loot
 				for(int go = 0; go<randy; ++go){
 				ent.entityDropItem(powder, 0);
 				}
 				ent.entityDropItem(skull, 0);
-				
-			//ent.setDead();
+			
 			event.setCanceled(true);
 		}
 		
@@ -69,16 +73,7 @@ public class ForgeEventHandler {
 		
 	}
 	
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
+	
 	 
 	 
 	 

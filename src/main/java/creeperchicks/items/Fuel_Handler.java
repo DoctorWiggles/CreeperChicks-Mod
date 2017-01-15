@@ -3,10 +3,9 @@ package creeperchicks.items;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.IFuelHandler;
 import creeperchicks.registry.Item_Registry;
 
-public class Fuel_Handler implements IFuelHandler {
+public class Fuel_Handler implements net.minecraftforge.fml.common.IFuelHandler {
 	/**
 	 * credit The_Fireplace
 	 */

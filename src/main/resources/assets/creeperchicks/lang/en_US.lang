@@ -4,9 +4,9 @@
 
 #          #
 # Entities #
-entity.CreeperChicks.CreeperChick.name=§2Creeper Chick
+entity.creeperchicks.CreeperChick.name=§2Creeper Chick
 
-entity.CreeperChicks.Entity_creep_Egg.name=Thrown Creeper Chick Egg
+entity.creeperchicks.Entity_creep_Egg.name=Thrown Creeper Chick Egg
 
 
 #Items #

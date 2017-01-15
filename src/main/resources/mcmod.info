@@ -1,7 +1,7 @@
 [
 {
-  "modid": "CreeperChicks",
-  "name": "CreeperChicks",
+  "modid": "creeperchicks",
+  "name": "Creeper Chicks",
   "description": "Bread and raise Creeper infused Chickens.",
   "version": "${version}",
   "mcversion": "${mcversion}",

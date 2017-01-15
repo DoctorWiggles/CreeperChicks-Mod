@@ -1,13 +1,9 @@
 package creeperchicks;
 
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import creeperchicks.registry.Item_Registry;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
+import creeperchicks.registry.Item_Registry;
 
 public class CreepTab extends CreativeTabs
 {

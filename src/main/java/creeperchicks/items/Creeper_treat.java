@@ -1,104 +1,105 @@
 package creeperchicks.items;
 
-import creeperchicks.Configs;
-import creeperchicks.CreepTab;
-import creeperchicks.mobs.Creeper_Chicken;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
+import java.util.List;
+
+import javax.annotation.Nullable;
+
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.item.EnumAction;
-import net.minecraft.item.Item;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.stats.StatList;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import creeperchicks.CreepTab;
+import creeperchicks.config.Config;
+import creeperchicks.mobs.Creeper_Chicken;
+import creeperchicks.util.ModUtil;
 
 public class Creeper_treat extends ItemFood
 {
 	
 
+	public Creeper_treat(String unlocal, int healAmount, float saturationModifier, boolean wolvesFavorite){
+		super(healAmount, saturationModifier, wolvesFavorite);
+		this.setUnlocalizedName(unlocal);
+		setCreativeTab(CreepTab.creeperchicks);
+		this.maxStackSize = 64;  
+		this.setAlwaysEdible();
 
-	//private PotionEffect[] effects;
+	}
 
-    public Creeper_treat(int healAmount, float saturationModifier, boolean wolvesFavorite)
-    {	super(healAmount, saturationModifier, wolvesFavorite);
-    this.setUnlocalizedName("creeper_treat");
-    //setTextureName("Creeperchicks:creeper_treat");
-    setCreativeTab(CreepTab.creeperchicks);
-    this.maxStackSize = 64;  
-
-    //this.effects = effects;
-    }
+	@Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, EntityPlayer player, List par3List, boolean par4)
+      {
+      par3List.add(TextFormatting.ITALIC + "Chickens seem to be attracted to it...");
+     }
+	
     
     @Override
-    protected void onFoodEaten(ItemStack stack, World world, EntityPlayer player) {
-
-   	 if (!world.isRemote)
-        {
-   		 world.createExplosion(player, player.posX, player.posY, player.posZ, (float)3, false);
-   		 world.createExplosion(null, player.posX, player.posY, player.posZ, (float).2, true);
-        }    	
-   	 //player.getFoodStats().func_151686_a(this, stack);
-           world.playSoundAtEntity(player, "random.burp", 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
-          // this.onFoodEaten(stack, world, player);
-           return;
-  
-    }
-    
-    
-   
-    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
-    {
-        if (player.canEat(true))
-        {
-            player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
-        }
-    	return stack;
-    }
-    
-    @Override
-    public boolean itemInteractionForEntity(ItemStack itemstack, EntityPlayer player, EntityLivingBase entity)
+    public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer player, EntityLivingBase target, EnumHand hand)
     {
     	World world = player.worldObj;
-    	double x = entity.posX;
-    	double y = entity.posY;
-    	double z = entity.posZ;
-        if (entity.worldObj.isRemote)
+    	double x = target.posX;
+    	double y = target.posY;
+    	double z = target.posZ;
+        if (target.worldObj.isRemote)
         {
             return false;
         }
-        if(entity instanceof EntityChicken){
+        if(target instanceof EntityChicken){
         	ItemStack heldItem = player.inventory.getCurrentItem();
 			 heldItem.stackSize--;
-    		 if(Configs.TransformationExplosion){
-    			 world.createExplosion(entity, x,y,z, (float)3, true);}
-    		 entity.setDead();
+    		 if(Config.TransformationExplosion){
+    			 world.createExplosion(target, x,y,z, (float)3, true);}
+    		 target.setDead();
     		 String name = null;
     		 try{
-    			 name = ((EntityChicken) entity).getCustomNameTag();}
+    			 name = ((EntityChicken) target).getCustomNameTag();}
     		 	catch(Exception exception){}   
     		 
     		 Creeper_Chicken chicky = new Creeper_Chicken(world);
     		 chicky.setLocationAndAngles(x,y,z, 0.0F, 0.0F);
-    		 //chicky.onSpawnWithEgg((IEntityLivingData)null);
 				 world.spawnEntityInWorld(chicky);
 				 if(name != null){
 					chicky.setCustomNameTag(name);
-					//chicky.setAlwaysRenderNameTag(true);
-				 }
-				 
-    	}       
+				 }				 
+    	} 
         
         return false;
     }
 
-    public EnumAction getItemUseAction(ItemStack stack)
+        
+    @Nullable
+    public ItemStack onItemUseFinish(ItemStack stack, World world, EntityLivingBase living)
     {
-        return EnumAction.EAT;
+    	if (!world.isRemote)
+        {
+   		 world.createExplosion(living, living.posX, living.posY, living.posZ, (float)3, false);
+   		 world.createExplosion(living, living.posX, living.posY, living.posZ, (float).2, true);
+        } 
+        --stack.stackSize;
+        
+        if (living instanceof EntityPlayer)
+        {
+            EntityPlayer player = (EntityPlayer)living;
+            player.getFoodStats().addStats(this, stack);           
+            ModUtil.sound((EntityPlayer)living, SoundEvents.ENTITY_PLAYER_BURP,0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
+            this.onFoodEaten(stack, world, player);
+            player.addStat(StatList.getObjectUseStats(this));
+            
+            if(player.capabilities.isCreativeMode){++stack.stackSize;}
+    	
+        }
+
+        return stack;
     }
+        
+     
 }

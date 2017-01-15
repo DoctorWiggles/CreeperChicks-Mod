@@ -1,43 +1,52 @@
 package creeperchicks.items;
 
-import creeperchicks.CreepTab;
-import creeperchicks.projectiles.Thrown_creep_Egg;
-import net.minecraft.creativetab.CreativeTabs;
+import java.util.List;
+
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityEgg;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import creeperchicks.CreepTab;
+import creeperchicks.projectiles.Thrown_creep_Egg;
+import creeperchicks.util.ModUtil;
 
-public class Egg_item extends Item
-{
-    private static final String __OBFID = "CL_00000023";
+public class Egg_item extends Item{
 
-    public Egg_item()
+    public Egg_item(String unlocal)
     {
         this.maxStackSize = 16;
         this.setCreativeTab(CreepTab.creeperchicks);
-        this.setUnlocalizedName("egg_item");
-        //setTextureName("creeperchicks:egg_item");
+        this.setUnlocalizedName(unlocal);
+    }
+    
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, EntityPlayer player, List par3List, boolean par4){
+
+    	par3List.add(TextFormatting.ITALIC + "Something is rumbling inside");
     }
 
-    /**
-     * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
-     */
-    public ItemStack onItemRightClick(ItemStack p_77659_1_, World p_77659_2_, EntityPlayer p_77659_3_)
-    {
-        if (!p_77659_3_.capabilities.isCreativeMode)
-        {
-            --p_77659_1_.stackSize;
-        }
+    @Override	  
+    public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand){
 
-        p_77659_2_.playSoundAtEntity(p_77659_3_, "random.bow", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+    	if (!player.capabilities.isCreativeMode){--stack.stackSize;}
 
-        if (!p_77659_2_.isRemote)
-        {
-            p_77659_2_.spawnEntityInWorld(new Thrown_creep_Egg(p_77659_2_, p_77659_3_));
-        }
+    	ModUtil.sound(player, SoundEvents.ENTITY_ARROW_SHOOT, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F) );
 
-        return p_77659_1_;
+    	if (!world.isRemote)
+    	{	Thrown_creep_Egg eggy = new Thrown_creep_Egg(world, player);
+    		eggy.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0F, 1F, 1F);
+    		world.spawnEntityInWorld(eggy);
+    	}
+
+    	return new ActionResult(EnumActionResult.SUCCESS, stack);
     }
 }
