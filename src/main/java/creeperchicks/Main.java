@@ -21,7 +21,7 @@ public class Main
 	public static final String MODID = "creeperchicks";
 	public static final String PATH = MODID + ":";
 	public static final String MODNAME = "Creeper Chicks";
-	public static final String VERSION = "v2.0";
+	public static final String VERSION = "v2.1";
 	public static final String GUIFactory  = "creeperchicks.config.Config_Factory";
 	public static final Logger logger = LogManager.getLogger(Main.MODID);
 	

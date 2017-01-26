@@ -11,6 +11,7 @@ import creeperchicks.items.Fuel_Handler;
 import creeperchicks.registry.Entity_Registry;
 import creeperchicks.registry.Item_Registry;
 import creeperchicks.registry.RecipeFactory;
+import creeperchicks.util.Dispenser_Handler;
 import creeperchicks.util.ForgeEventHandler;
 
 public class CommonProxy {
@@ -34,6 +35,6 @@ public void preInit(FMLPreInitializationEvent e) {
 	}
 
 	public void postInit(FMLPostInitializationEvent e) {
-
+		Dispenser_Handler.registerVanillaDispenserBehaviors();
 	}
 }

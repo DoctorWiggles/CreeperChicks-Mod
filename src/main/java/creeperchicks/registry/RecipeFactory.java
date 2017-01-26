@@ -12,7 +12,7 @@ public class RecipeFactory extends Item_Registry{
 		GameRegistry.addRecipe(new ShapelessOreRecipe(output,recipe));
 		
 	}
-	static ItemStack skull = new ItemStack(Items.SKULL, 0, 4);
+	static ItemStack skull = new ItemStack(Items.SKULL, 1, 4);
 	
 	public static void RegisterRecipes(){
 		Main.logger.info("Loading Recipes");
